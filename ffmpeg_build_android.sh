@@ -1,12 +1,13 @@
 # ===================
 # == Installation
-# ..Get NDK download url
+# ..Get NDK download URL
 # curl -s https://developer.android.com/ndk/downloads/index.html | grep -Eo 'https://.+linux.zip'
 
-# ..Download and unpack
-# wget https://dl.google.com/android/repository/android-ndk-r25b-linux.zip
+# ..Download and unpack to /root
+# wget https://dl.google.com/android/repository/android-ndk-r29-linux.zip
 # wget http://ffmpeg.org/releases/ffmpeg-6.0.tar.gz
 # apt install unzip
+# unzip android-ndk-r29-linux.zip
 # tar -xzvf ffmpeg-6.0.tar.gz
 
 # ..Or get the git repository
@@ -19,10 +20,10 @@
 FULL_BUILD=0
 
 BUILD_DIR=/root/_ffmpeg-android
-FFMPEG_DIR=/root/ffmpeg
+FFMPEG_DIR=/root/ffmpeg-6.0
 
-NDK_TOOLCHAIN_DIR=/root/android-ndk-r25b/toolchains/llvm/prebuilt/linux-x86_64
-NDK_MAKE_DIR=/root/android-ndk-r25b/prebuilt/linux-x86_64/bin
+NDK_TOOLCHAIN_DIR=/root/android-ndk-r29/toolchains/llvm/prebuilt/linux-x86_64
+NDK_MAKE_DIR=/root/android-ndk-r29/prebuilt/linux-x86_64/bin
 
 PATH=$PATH:$NDK_MAKE_DIR
 
@@ -101,9 +102,10 @@ ADD_CONFIG=(
 --disable-swscale
 --disable-postproc
 --disable-avfilter
---disable-network
 
 --enable-protocol=file
+--enable-protocol=tcp
+--enable-protocol=http
 
 --enable-parser=aac
 --enable-parser=aac_latm
